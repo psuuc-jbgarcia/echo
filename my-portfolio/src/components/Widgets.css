@@ -1,0 +1,65 @@
+.widget-git-feed {
+  position: absolute;
+  top: 48px;
+  right: 16px;
+  width: 250px;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--text-color);
+  opacity: 0.6;
+  z-index: 50;
+  transition: opacity 0.2s;
+  pointer-events: auto;
+}
+
+.widget-git-feed:hover {
+  opacity: 1;
+}
+
+.widget-header {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: var(--accent-cyan);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 4px;
+}
+
+.commit-item {
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: slide-in 0.3s ease-out;
+}
+
+.commit-hash {
+  color: var(--accent-blue);
+  margin-right: 6px;
+}
+
+.widget-system-log {
+  position: absolute;
+  bottom: 90px; /* Above dock */
+  right: 16px;
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  opacity: 0.5;
+  z-index: 50;
+  animation: fade-in-out 8s infinite;
+  pointer-events: none;
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fade-in-out {
+  0% { opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { opacity: 0; }
+}

@@ -5,6 +5,12 @@ import SkillsApp from './components/SkillsApp';
 import ExperienceApp from './components/ExperienceApp';
 import CertificationsApp from './components/CertificationsApp';
 import ContactApp from './components/ContactApp';
+import TopBar from './components/TopBar';
+import MatrixRain from './components/MatrixRain';
+import DesktopIcon from './components/DesktopIcon';
+import ContextMenu from './components/ContextMenu';
+import { LiveGitFeed, SystemLogs } from './components/Widgets';
+import { Folder, FileText, Trash2 } from 'lucide-react';
 import './App.css';
 
 function App() {
@@ -15,6 +21,8 @@ function App() {
 
   // Theme state for Dock syncing
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [contextMenu, setContextMenu] = useState<{ x: number; y: number; show: boolean }>({ x: 0, y: 0, show: false });
+  const [selectedDesktopIcon, setSelectedDesktopIcon] = useState<string | null>(null);
 
   useEffect(() => {
     // Initial global theme check
@@ -28,6 +36,15 @@ function App() {
       setIsDarkMode(false);
       document.documentElement.setAttribute('data-theme', 'light');
     }
+  }, []);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   const toggleTheme = () => {
@@ -53,14 +70,128 @@ function App() {
     setActiveWindow(id);
   };
 
+  const handleContextMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setContextMenu({ x: e.clientX, y: e.clientY, show: true });
+  };
+
+  const handleContextMenuAction = (action: string) => {
+    setContextMenu({ ...contextMenu, show: false });
+    if (action === 'terminal') {
+      if (!openWindows['terminal']) toggleWindow('terminal');
+      else focusWindow('terminal');
+    } else if (action === 'wallpaper') {
+      toggleTheme();
+    } else if (action === 'github') {
+      window.open('https://github.com/jerico/portfolio-os', '_blank');
+    }
+  };
+
+  const handleDesktopClick = () => {
+    setSelectedDesktopIcon(null);
+  };
+
   return (
-    <div className="os-desktop">
+    <div className="os-desktop" onContextMenu={handleContextMenu} onClick={handleDesktopClick}>
       {/* Background graphic */}
+      <div className="os-bg-mesh"></div>
       <div className="os-bg-glow glow-cyan"></div>
       <div className="os-bg-glow glow-blue"></div>
+      <div className="os-cursor-glow"></div>
+
+      <MatrixRain />
+
+      {/* Desktop Icons */}
+      <DesktopIcon 
+        icon={<Folder size={32} />} 
+        label="Projects" top={60} left={20} 
+        isSelected={selectedDesktopIcon === 'projects_folder'}
+        onClick={(e) => { e.stopPropagation(); setSelectedDesktopIcon('projects_folder'); toggleWindow('projects_folder'); }} 
+      />
+      <DesktopIcon 
+        icon={<FileText size={32} />} 
+        label="Resume.pdf" top={160} left={20} 
+        isSelected={selectedDesktopIcon === 'resume_pdf'}
+        onClick={(e) => { e.stopPropagation(); setSelectedDesktopIcon('resume_pdf'); toggleWindow('resume_pdf'); }} 
+      />
+      <DesktopIcon 
+        icon={<Trash2 size={32} />} 
+        label="Trash" top={260} left={20} 
+        isSelected={selectedDesktopIcon === 'trash_bin'}
+        onClick={(e) => { e.stopPropagation(); setSelectedDesktopIcon('trash_bin'); toggleWindow('trash_bin'); }} 
+      />
+
+      {/* Widgets */}
+      <LiveGitFeed />
+      <SystemLogs />
+
+      {/* Context Menu */}
+      {contextMenu.show && (
+        <ContextMenu 
+          x={contextMenu.x} 
+          y={contextMenu.y} 
+          onClose={() => setContextMenu({ ...contextMenu, show: false })} 
+          onAction={handleContextMenuAction} 
+        />
+      )}
+      <TopBar />
 
       {/* Windows Area */}
       <div className="os-workspace">
+        <DraggableWindow
+          id="projects_folder"
+          title="Projects"
+          isOpen={!!openWindows['projects_folder']}
+          isActive={activeWindow === 'projects_folder'}
+          onClose={() => toggleWindow('projects_folder')}
+          onFocus={() => focusWindow('projects_folder')}
+          defaultPosition={{ x: 150, y: 150 }}
+          defaultSize={{ width: 500, height: 350 }}
+          closeOnly={true}
+        >
+          <div className="coming-soon-container">
+            <Folder size={48} className="coming-soon-icon" />
+            <h2>Projects</h2>
+            <p>Coming Soon...</p>
+          </div>
+        </DraggableWindow>
+
+        <DraggableWindow
+          id="resume_pdf"
+          title="Resume.pdf"
+          isOpen={!!openWindows['resume_pdf']}
+          isActive={activeWindow === 'resume_pdf'}
+          onClose={() => toggleWindow('resume_pdf')}
+          onFocus={() => focusWindow('resume_pdf')}
+          defaultPosition={{ x: 250, y: 100 }}
+          defaultSize={{ width: 500, height: 600 }}
+          closeOnly={true}
+        >
+          <div className="coming-soon-container">
+            <FileText size={48} className="coming-soon-icon" />
+            <h2>Resume.pdf</h2>
+            <p>PDF Viewer Coming Soon...</p>
+          </div>
+        </DraggableWindow>
+
+        <DraggableWindow
+          id="trash_bin"
+          title="Trash"
+          isOpen={!!openWindows['trash_bin']}
+          isActive={activeWindow === 'trash_bin'}
+          onClose={() => toggleWindow('trash_bin')}
+          onFocus={() => focusWindow('trash_bin')}
+          defaultPosition={{ x: 350, y: 250 }}
+          defaultSize={{ width: 400, height: 300 }}
+          closeOnly={true}
+        >
+          <div className="coming-soon-container">
+            <Trash2 size={48} className="coming-soon-icon" />
+            <h2>Trash</h2>
+            <p>Trash is empty.</p>
+          </div>
+        </DraggableWindow>
+
         <DraggableWindow
           id="terminal"
           title="jerico@portfolio:~"

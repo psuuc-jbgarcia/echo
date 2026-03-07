@@ -1,0 +1,39 @@
+.context-menu {
+  position: absolute;
+  width: 200px;
+  padding: 6px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 10000; /* Ensure it's above everything */
+  animation: context-fade-in 0.15s ease-out;
+}
+
+.context-menu-item {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.1s, color 0.1s;
+}
+
+.context-menu-item:hover {
+  background-color: var(--accent-cyan);
+  color: #fff; /* White text on hover for contrast */
+}
+
+.context-menu-divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 6px 0;
+}
+
+@keyframes context-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

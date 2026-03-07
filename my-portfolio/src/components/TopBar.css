@@ -1,0 +1,64 @@
+.os-topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 0.85rem;
+  z-index: 9999;
+  user-select: none;
+  background: var(--card-bg); /* Use glassmorphism variable */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.topbar-left, .topbar-right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.topbar-menu-item {
+  padding: 0 10px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  cursor: default;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.topbar-menu-item.font-bold {
+  font-weight: 700;
+}
+
+.topbar-menu-item:hover, .topbar-icon:hover, .topbar-time:hover {
+  background-color: rgba(var(--text-color-rgb), 0.1);
+}
+
+.topbar-icon {
+  padding: 0 8px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: default;
+  transition: background-color 0.2s;
+  border-radius: 4px;
+}
+
+.topbar-time {
+  padding: 0 8px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  cursor: default;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}

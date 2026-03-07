@@ -13,6 +13,7 @@ interface WindowProps {
   children: React.ReactNode;
   defaultPosition?: { x: number; y: number };
   defaultSize?: { width: number | string; height: number | string };
+  closeOnly?: boolean;
 }
 
 const DraggableWindow: React.FC<WindowProps> = ({
@@ -24,6 +25,7 @@ const DraggableWindow: React.FC<WindowProps> = ({
   children,
   defaultPosition = { x: 100, y: 100 },
   defaultSize = { width: 600, height: 400 },
+  closeOnly = false,
 }) => {
   if (!isOpen) return null;
 
@@ -49,12 +51,16 @@ const DraggableWindow: React.FC<WindowProps> = ({
           <button className="win-btn close-btn" onClick={(e) => { e.stopPropagation(); onClose(); }}>
             <X size={12} strokeWidth={3} />
           </button>
-          <button className="win-btn min-btn">
-            <Minus size={12} strokeWidth={3} />
-          </button>
-          <button className="win-btn max-btn">
-            <Square size={10} strokeWidth={3} />
-          </button>
+          {!closeOnly && (
+            <>
+              <button className="win-btn min-btn">
+                <Minus size={12} strokeWidth={3} />
+              </button>
+              <button className="win-btn max-btn">
+                <Square size={10} strokeWidth={3} />
+              </button>
+            </>
+          )}
         </div>
         <div className="window-title">{title}</div>
         <div className="window-spacer"></div>
