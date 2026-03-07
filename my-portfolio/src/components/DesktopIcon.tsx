@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import type { ReactNode } from 'react';
 import './DesktopIcon.css';
 
@@ -16,8 +15,8 @@ const DesktopIcon = ({ icon, label, onClick, top, left, isSelected = false }: De
   // Listen for clicks on the window to deselect
   // A bit hacky to put in each icon, but works for a few icons
   return (
-    <div 
-      className={`desktop-icon ${isSelected ? 'selected' : ''}`} 
+    <div
+      className={`desktop-icon ${isSelected ? 'selected' : ''}`}
       style={{ top: `${top}px`, left: `${left}px` }}
       onClick={onClick}
     >
