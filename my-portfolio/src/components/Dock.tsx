@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Terminal, Lightbulb, FolderKanban, Award, Mail, ChevronUp } from 'lucide-react';
+import { Terminal, Lightbulb, FolderKanban, Award, Mail, } from 'lucide-react';
 import './Dock.css';
 
 interface DockProps {
@@ -22,13 +22,13 @@ const Dock: React.FC<DockProps> = ({ toggleWindow, openWindows, activeWindow, to
   const [hoveredApp, setHoveredApp] = useState<string | null>(null);
 
   // Determine an OS icon representing the theme toggle
-  const ThemeIcon = isDarkMode ? ChevronUp : ChevronUp; // Just a placeholder, actually we'll just style it like a system pref
+  // const ThemeIcon = isDarkMode ? ChevronUp : ChevronUp; // Just a placeholder, actually we'll just style it like a system pref
 
   return (
     <div className="dock-container glass">
       {apps.map((app) => (
-        <div 
-          key={app.id} 
+        <div
+          key={app.id}
           className={`dock-item-wrapper ${openWindows[app.id] ? 'is-open' : ''} ${activeWindow === app.id ? 'is-active' : ''}`}
           onClick={() => toggleWindow(app.id)}
           onMouseEnter={() => setHoveredApp(app.id)}
@@ -41,11 +41,11 @@ const Dock: React.FC<DockProps> = ({ toggleWindow, openWindows, activeWindow, to
           <div className="dock-dot"></div>
         </div>
       ))}
-      
+
       <div className="dock-divider"></div>
 
       {/* System Theme Toggle Icon in Dock */}
-      <div 
+      <div
         className="dock-item-wrapper"
         onClick={toggleTheme}
         onMouseEnter={() => setHoveredApp('theme')}
@@ -53,14 +53,14 @@ const Dock: React.FC<DockProps> = ({ toggleWindow, openWindows, activeWindow, to
       >
         {hoveredApp === 'theme' && <div className="dock-tooltip glass">{isDarkMode ? 'Light Mode' : 'Dark Mode'}</div>}
         <div className="dock-icon theme-icon" style={{ backgroundColor: '#fff', color: '#333' }}>
-           {/* Custom SVG or icon for theme, here we just use logic */}
-           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-             {isDarkMode ? (
-               <circle cx="12" cy="12" r="5" />
-             ) : (
-               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-             )}
-           </svg>
+          {/* Custom SVG or icon for theme, here we just use logic */}
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            {isDarkMode ? (
+              <circle cx="12" cy="12" r="5" />
+            ) : (
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            )}
+          </svg>
         </div>
       </div>
     </div>

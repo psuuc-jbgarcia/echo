@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Dock from './components/Dock';
 import DraggableWindow from './components/DraggableWindow';
 import SkillsApp from './components/SkillsApp';
@@ -12,7 +12,7 @@ function App() {
     terminal: true, // Auto-open terminal on load
   });
   const [activeWindow, setActiveWindow] = useState<string | null>('terminal');
-  
+
   // Theme state for Dock syncing
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -20,7 +20,7 @@ function App() {
     // Initial global theme check
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
+
     if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
       setIsDarkMode(true);
       document.documentElement.setAttribute('data-theme', 'dark');
@@ -61,10 +61,10 @@ function App() {
 
       {/* Windows Area */}
       <div className="os-workspace">
-        <DraggableWindow 
-          id="terminal" 
-          title="jerico@portfolio:~" 
-          isOpen={!!openWindows['terminal']} 
+        <DraggableWindow
+          id="terminal"
+          title="jerico@portfolio:~"
+          isOpen={!!openWindows['terminal']}
           isActive={activeWindow === 'terminal'}
           onClose={() => toggleWindow('terminal')}
           onFocus={() => focusWindow('terminal')}
@@ -74,13 +74,13 @@ function App() {
           <div className="terminal-content" style={{ fontFamily: 'monospace', color: 'var(--text-color)' }}>
             <p><span style={{ color: 'var(--accent-cyan)' }}>jerico@portfolio</span>:<span style={{ color: 'var(--accent-blue)' }}>~</span>$ whoami</p>
             <p style={{ marginTop: '0.5rem', marginBottom: '1rem', fontSize: '1.1rem' }}>Jerico B. Garcia</p>
-            
+
             <p><span style={{ color: 'var(--accent-cyan)' }}>jerico@portfolio</span>:<span style={{ color: 'var(--accent-blue)' }}>~</span>$ cat intro.txt</p>
             <p style={{ marginTop: '0.5rem', marginBottom: '1rem' }}>
-              Hello! I'm a Mobile & Web Developer crafting beautiful applications. <br/>
-              I also work as an IT Instructor at Universidad de Dagupan.<br/>
-              <br/>
-              I built this portfolio as an interactive desktop environment. <br/>
+              Hello! I'm a Mobile & Web Developer crafting beautiful applications. <br />
+              I also work as an IT Instructor at Universidad de Dagupan.<br />
+              <br />
+              I built this portfolio as an interactive desktop environment. <br />
               Try dragging this window, or open other apps from the dock below!
             </p>
 
@@ -88,10 +88,10 @@ function App() {
           </div>
         </DraggableWindow>
 
-        <DraggableWindow 
-          id="skills" 
-          title="Skills Map" 
-          isOpen={!!openWindows['skills']} 
+        <DraggableWindow
+          id="skills"
+          title="Skills Map"
+          isOpen={!!openWindows['skills']}
           isActive={activeWindow === 'skills'}
           onClose={() => toggleWindow('skills')}
           onFocus={() => focusWindow('skills')}
@@ -100,11 +100,11 @@ function App() {
         >
           <SkillsApp />
         </DraggableWindow>
-        
-        <DraggableWindow 
-          id="experience" 
-          title="System Logs: Experience" 
-          isOpen={!!openWindows['experience']} 
+
+        <DraggableWindow
+          id="experience"
+          title="System Logs: Experience"
+          isOpen={!!openWindows['experience']}
           isActive={activeWindow === 'experience'}
           onClose={() => toggleWindow('experience')}
           onFocus={() => focusWindow('experience')}
@@ -113,11 +113,11 @@ function App() {
         >
           <ExperienceApp />
         </DraggableWindow>
-        
-        <DraggableWindow 
-          id="certifications" 
-          title="Certificates Store" 
-          isOpen={!!openWindows['certifications']} 
+
+        <DraggableWindow
+          id="certifications"
+          title="Certificates Store"
+          isOpen={!!openWindows['certifications']}
           isActive={activeWindow === 'certifications'}
           onClose={() => toggleWindow('certifications')}
           onFocus={() => focusWindow('certifications')}
@@ -126,11 +126,11 @@ function App() {
         >
           <CertificationsApp />
         </DraggableWindow>
-        
-        <DraggableWindow 
-          id="contact" 
-          title="Network Connections" 
-          isOpen={!!openWindows['contact']} 
+
+        <DraggableWindow
+          id="contact"
+          title="Network Connections"
+          isOpen={!!openWindows['contact']}
           isActive={activeWindow === 'contact'}
           onClose={() => toggleWindow('contact')}
           onFocus={() => focusWindow('contact')}
@@ -141,10 +141,10 @@ function App() {
         </DraggableWindow>
       </div>
 
-      <Dock 
-        toggleWindow={toggleWindow} 
-        openWindows={openWindows} 
-        activeWindow={activeWindow} 
+      <Dock
+        toggleWindow={toggleWindow}
+        openWindows={openWindows}
+        activeWindow={activeWindow}
         toggleTheme={toggleTheme}
         isDarkMode={isDarkMode}
       />
