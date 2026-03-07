@@ -1,0 +1,90 @@
+.os-desktop {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(var(--accent-cyan-rgb), 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(var(--accent-blue-rgb), 0.05) 0px, transparent 50%);
+}
+
+.os-workspace {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 80px); /* Leave room for dock */
+  pointer-events: none; /* Let clicks pass through workspace... */
+}
+
+/* ...but catch them on actual windows */
+.os-workspace > * {
+  pointer-events: auto; 
+}
+
+
+.os-bg-glow {
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  filter: blur(150px);
+  z-index: 0;
+  opacity: 0.15;
+}
+
+.os-bg-glow.glow-cyan {
+  top: -200px;
+  left: -200px;
+  background: var(--accent-cyan);
+}
+
+.os-bg-glow.glow-blue {
+  bottom: -200px;
+  right: -200px;
+  background: var(--accent-blue);
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.coming-soon-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.coming-soon-icon {
+  color: var(--accent-cyan);
+  opacity: 0.8;
+  animation: float 3s ease-in-out infinite;
+}
+
+.coming-soon-container h2 {
+  font-size: 1.8rem;
+  background: linear-gradient(to right, var(--accent-cyan), var(--accent-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.coming-soon-container p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  max-width: 400px;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
