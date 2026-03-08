@@ -1,0 +1,98 @@
+import React from 'react';
+import { FileText, Download, Eye } from 'lucide-react';
+import './AboutApp.css';
+
+const AboutApp: React.FC = () => {
+  return (
+    <div className="about-app">
+      <div className="about-header">
+        <span className="about-path">$ cat about_me.txt</span>
+      </div>
+
+      <div className="about-content">
+        <div className="about-section">
+          <pre className="about-ascii">
+{`     ██╗███████╗██████╗ ██╗ ██████╗ ██████╗ 
+     ██║██╔════╝██╔══██╗██║██╔════╝██╔═══██╗
+     ██║█████╗  ██████╔╝██║██║     ██║   ██║
+██   ██║██╔══╝  ██╔══██╗██║██║     ██║   ██║
+╚█████╔╝███████╗██║  ██║██║╚██████╗╚██████╔╝
+ ╚════╝ ╚══════╝╚═╝  ╚═╝╚═╝ ╚═════╝ ╚═════╝ `}
+          </pre>
+        </div>
+
+        <div className="about-info-grid">
+          <div className="about-info-block">
+            <div className="about-info-label">👤 Name</div>
+            <div className="about-info-value">Jerico B. Garcia</div>
+          </div>
+          <div className="about-info-block">
+            <div className="about-info-label">🎓 Degree</div>
+            <div className="about-info-value">BSIT — Universidad de Dagupan</div>
+          </div>
+          <div className="about-info-block">
+            <div className="about-info-label">💼 Role</div>
+            <div className="about-info-value">Developer & IT Instructor</div>
+          </div>
+          <div className="about-info-block">
+            <div className="about-info-label">📍 Location</div>
+            <div className="about-info-value">Dagupan City, Philippines</div>
+          </div>
+        </div>
+
+        <div className="about-divider" />
+
+        <div className="about-spec-section">
+          <div className="about-spec-label">🛠 Specialization</div>
+          <div className="about-spec-tags">
+            {['Web Development', 'Mobile Development', 'AI / Computer Vision', 'Database Systems'].map(s => (
+              <span key={s} className="spec-tag">{s}</span>
+            ))}
+          </div>
+        </div>
+
+        <div className="about-divider" />
+
+        <div className="about-tech-section">
+          <div className="about-spec-label">⚡ Technologies</div>
+          <div className="about-spec-tags">
+            {['Flutter', 'PHP', 'Laravel', 'MySQL', 'Python', 'YOLO', 'Firebase', 'Bootstrap', 'Flask', 'JavaScript'].map(t => (
+              <span key={t} className="tech-tag">{t}</span>
+            ))}
+          </div>
+        </div>
+
+        <div className="about-divider" />
+
+        <div className="about-passion">
+          <div className="about-spec-label">💡 Passion</div>
+          <p className="about-passion-text">
+            Building scalable, user-friendly systems that solve real-world problems.
+            I enjoy the intersection of technology and creativity — whether it's designing
+            intuitive UIs or architecting efficient backend systems.
+          </p>
+        </div>
+
+        <div className="about-resume-actions">
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="resume-btn view-btn"
+          >
+            <Eye size={16} /> View Resume
+          </a>
+          <a
+            href="/resume.pdf"
+            download="Jerico_Garcia_Resume.pdf"
+            className="resume-btn download-btn"
+          >
+            <Download size={16} /> Download Resume
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AboutApp;

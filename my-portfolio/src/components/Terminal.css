@@ -1,0 +1,101 @@
+.terminal-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1rem 1.25rem;
+  background: transparent;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  cursor: text;
+  box-sizing: border-box;
+}
+
+.terminal-output {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+.term-line {
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-all;
+  padding: 0 2px;
+}
+
+.term-input {
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+.term-output {
+  color: var(--text-color);
+  opacity: 0.85;
+}
+
+.term-success {
+  color: #1DE9B6;
+}
+
+.term-error {
+  color: #ff5f56;
+}
+
+.term-info {
+  color: var(--accent-cyan);
+  opacity: 0.7;
+}
+
+.term-blank {
+  line-height: 0.8;
+}
+
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+.terminal-prompt {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.prompt-user {
+  color: var(--accent-cyan);
+  font-weight: 700;
+}
+
+.prompt-sep {
+  color: var(--text-color);
+}
+
+.prompt-dir {
+  color: #2979FF;
+  font-weight: 600;
+}
+
+.prompt-dollar {
+  color: var(--text-color);
+  margin-left: 4px;
+  margin-right: 2px;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-color);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  caret-color: var(--accent-cyan);
+}

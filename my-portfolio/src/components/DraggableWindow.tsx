@@ -14,6 +14,7 @@ interface WindowProps {
   defaultPosition?: { x: number; y: number };
   defaultSize?: { width: number | string; height: number | string };
   closeOnly?: boolean;
+  noPadding?: boolean;
 }
 
 const DraggableWindow: React.FC<WindowProps> = ({
@@ -26,6 +27,7 @@ const DraggableWindow: React.FC<WindowProps> = ({
   defaultPosition = { x: 100, y: 100 },
   defaultSize = { width: 600, height: 400 },
   closeOnly = false,
+  noPadding = false,
 }) => {
   if (!isOpen) return null;
 
@@ -66,8 +68,7 @@ const DraggableWindow: React.FC<WindowProps> = ({
         <div className="window-spacer"></div>
       </div>
       
-      {/* Window Content */}
-      <div className="window-content">
+      <div className="window-content" style={noPadding ? { padding: 0, overflow: 'hidden' } : {}}>
         {children}
       </div>
     </Rnd>

@@ -55,8 +55,8 @@
   top: 28px; /* Leave room for TopBar */
   left: 0;
   width: 100%;
-  height: calc(100vh - 108px); /* Leave room for dock and topbar */
-  pointer-events: none; /* Let clicks pass through workspace... */
+  height: calc(100vh - 90px); /* Tighter: dock is only 8px from bottom now */
+  pointer-events: none;
   z-index: 10;
 }
 

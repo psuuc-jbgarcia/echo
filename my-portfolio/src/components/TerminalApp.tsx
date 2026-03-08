@@ -1,0 +1,264 @@
+import React, { useState, useRef, useEffect } from 'react';
+import './Terminal.css';
+
+interface Line {
+  type: 'input' | 'output' | 'error' | 'success' | 'info' | 'blank';
+  content: string | React.ReactNode;
+}
+
+const BOOT_LINES: Line[] = [
+  { type: 'info', content: 'JericoOS v1.0.0 — Portfolio Shell' },
+  { type: 'info', content: 'Type `help` to see available commands.' },
+  { type: 'blank', content: '' },
+  { type: 'output', content: '👋 Welcome! I\'m Jerico B. Garcia — Developer & IT Instructor.' },
+  { type: 'blank', content: '' },
+];
+
+const COMMANDS: Record<string, (args: string[]) => Line[]> = {
+  help: () => [
+    { type: 'info', content: '╔══════════════════════════════════════╗' },
+    { type: 'info', content: '║         Available Commands           ║' },
+    { type: 'info', content: '╚══════════════════════════════════════╝' },
+    { type: 'output', content: '  whoami          — Who am I?' },
+    { type: 'output', content: '  about           — About me' },
+    { type: 'output', content: '  skills          — My tech skills' },
+    { type: 'output', content: '  projects        — My projects' },
+    { type: 'output', content: '  contact         — Contact info' },
+    { type: 'output', content: '  experience      — Work experience' },
+    { type: 'output', content: '  scan network    — Network scanner' },
+    { type: 'output', content: '  sudo hire-me    — *wink wink*' },
+    { type: 'output', content: '  clear           — Clear the terminal' },
+    { type: 'blank', content: '' },
+  ],
+
+  whoami: () => [
+    { type: 'success', content: 'Jerico B. Garcia' },
+    { type: 'output', content: 'BSIT Student | Mobile & Web Developer | IT Instructor' },
+    { type: 'output', content: 'Universidad de Dagupan' },
+    { type: 'blank', content: '' },
+  ],
+
+  about: () => [
+    { type: 'info', content: '$ cat about_me.txt' },
+    { type: 'blank', content: '' },
+    { type: 'output', content: '┌─────────────────────────────────────────┐' },
+    { type: 'output', content: '│  Name:    Jerico B. Garcia              │' },
+    { type: 'output', content: '│  Role:    Developer & IT Instructor     │' },
+    { type: 'output', content: '│  School:  Universidad de Dagupan        │' },
+    { type: 'output', content: '│  Degree:  BSIT                          │' },
+    { type: 'output', content: '├─────────────────────────────────────────┤' },
+    { type: 'output', content: '│  Specialization:                        │' },
+    { type: 'output', content: '│    → Web Development                   │' },
+    { type: 'output', content: '│    → Mobile Development (Flutter)      │' },
+    { type: 'output', content: '│    → AI / Computer Vision              │' },
+    { type: 'output', content: '├─────────────────────────────────────────┤' },
+    { type: 'output', content: '│  Passion:                               │' },
+    { type: 'output', content: '│  Building scalable, user-friendly       │' },
+    { type: 'output', content: '│  systems that solve real-world problems │' },
+    { type: 'output', content: '└─────────────────────────────────────────┘' },
+    { type: 'blank', content: '' },
+  ],
+
+  skills: () => [
+    { type: 'info', content: '$ skills --list' },
+    { type: 'blank', content: '' },
+    { type: 'success', content: '🎨 Frontend:' },
+    { type: 'output', content: '   HTML ████████████ 92%' },
+    { type: 'output', content: '   CSS  ███████████░ 88%' },
+    { type: 'output', content: '   JS   ████████░░░░ 80%' },
+    { type: 'output', content: '   Flutter ████████░ 78%' },
+    { type: 'blank', content: '' },
+    { type: 'success', content: '⚙️  Backend:' },
+    { type: 'output', content: '   PHP    ████████░░ 85%' },
+    { type: 'output', content: '   Laravel ███████░░ 75%' },
+    { type: 'output', content: '   MySQL  █████████░ 88%' },
+    { type: 'output', content: '   Flask  ███████░░░ 70%' },
+    { type: 'blank', content: '' },
+    { type: 'success', content: '🤖 AI / Tools:' },
+    { type: 'output', content: '   Python   ████████ 80%' },
+    { type: 'output', content: '   YOLO     ██████░░ 65%' },
+    { type: 'output', content: '   Selenium ███████░ 68%' },
+    { type: 'output', content: '   Firebase ███████░ 72%' },
+    { type: 'blank', content: '' },
+  ],
+
+  projects: () => [
+    { type: 'info', content: '$ ls ~/projects/' },
+    { type: 'blank', content: '' },
+    { type: 'output', content: '1. 🚗 Smart Parking Management System' },
+    { type: 'output', content: '      └─ Python, YOLO, Flask, MySQL' },
+    { type: 'output', content: '         github.com/psuuc-jbgarcia/smart-parking' },
+    { type: 'blank', content: '' },
+    { type: 'output', content: '2. 📋 Barangay Document Request System' },
+    { type: 'output', content: '      └─ PHP, Laravel, MySQL, Bootstrap' },
+    { type: 'output', content: '         github.com/psuuc-jbgarcia/barangay-system' },
+    { type: 'blank', content: '' },
+    { type: 'output', content: '3. 🍳 Recipe Management System with Chatbot' },
+    { type: 'output', content: '      └─ PHP, Python, NLP, MySQL' },
+    { type: 'output', content: '         github.com/psuuc-jbgarcia/recipe-chatbot' },
+    { type: 'blank', content: '' },
+    { type: 'output', content: '4. 🛒 E-commerce Website' },
+    { type: 'output', content: '      └─ PHP, MySQL, Bootstrap, JavaScript' },
+    { type: 'output', content: '         github.com/psuuc-jbgarcia/ecommerce' },
+    { type: 'blank', content: '' },
+    { type: 'output', content: '5. 📱 Flutter Apps Collection' },
+    { type: 'output', content: '      └─ Flutter, Dart, Firebase' },
+    { type: 'output', content: '         github.com/psuuc-jbgarcia/flutter-apps' },
+    { type: 'blank', content: '' },
+  ],
+
+  contact: () => [
+    { type: 'info', content: '$ cat contact.json' },
+    { type: 'blank', content: '' },
+    { type: 'output', content: '{' },
+    { type: 'success', content: '  "email":    "jbgarcia@psuuc.edu.ph",' },
+    { type: 'success', content: '  "github":   "github.com/psuuc-jbgarcia",' },
+    { type: 'success', content: '  "linkedin": "linkedin.com/in/jbgarcia"' },
+    { type: 'output', content: '}' },
+    { type: 'blank', content: '' },
+  ],
+
+  experience: () => [
+    { type: 'info', content: '$ cat experience.log' },
+    { type: 'blank', content: '' },
+    { type: 'success', content: '[July 2025 - Present] IT Instructor ● Current' },
+    { type: 'output', content: '  Universidad de Dagupan' },
+    { type: 'output', content: '  • Web Development & Database Systems' },
+    { type: 'output', content: '  • Platform Technology (Linux, Apache2, Networking)' },
+    { type: 'output', content: '  • Network Scanning & Cybersecurity basics' },
+    { type: 'blank', content: '' },
+  ],
+
+  'scan network': () => [
+    { type: 'info', content: '$ nmap -sP 192.168.1.0/24' },
+    { type: 'blank', content: '' },
+    { type: 'output', content: 'Starting Nmap 7.94 ( https://nmap.org )' },
+    { type: 'output', content: 'Scanning network range 192.168.1.0/24...' },
+    { type: 'blank', content: '' },
+    { type: 'success', content: 'Host is up:  192.168.1.1    — Router (Gateway)' },
+    { type: 'success', content: 'Host is up:  192.168.1.5    — Laptop-K1 [YOU]' },
+    { type: 'success', content: 'Host is up:  192.168.1.7    — IoT Device (Camera)' },
+    { type: 'success', content: 'Host is up:  192.168.1.12   — Smart TV' },
+    { type: 'success', content: 'Host is up:  192.168.1.20   — Unknown Device 🤔' },
+    { type: 'blank', content: '' },
+    { type: 'info', content: '5 hosts up — Nmap done.' },
+    { type: 'blank', content: '' },
+  ],
+
+  'sudo hire-me': () => [
+    { type: 'info', content: '$ sudo hire-me' },
+    { type: 'blank', content: '' },
+    { type: 'output', content: '[sudo] password for jerico: ************' },
+    { type: 'blank', content: '' },
+    { type: 'success', content: '✅ Authentication successful.' },
+    { type: 'success', content: '✅ Credentials verified.' },
+    { type: 'success', content: '✅ Portfolio reviewed.' },
+    { type: 'blank', content: '' },
+    { type: 'success', content: '🎉 ACCESS GRANTED. Welcome to the team!' },
+    { type: 'success', content: '📧 Offer letter sent to: jbgarcia@psuuc.edu.ph' },
+    { type: 'blank', content: '' },
+    { type: 'info', content: '   Best decision you\'ve made today. 😄' },
+    { type: 'blank', content: '' },
+  ],
+
+  hack: () => [
+    { type: 'info', content: '$ initiating hack sequence...' },
+    { type: 'blank', content: '' },
+    { type: 'error', content: 'ERROR: ethics.module loaded — hacking disabled.' },
+    { type: 'output', content: 'Nice try. I only use my powers for good. 😎' },
+    { type: 'blank', content: '' },
+  ],
+};
+
+const TerminalApp: React.FC = () => {
+  const [lines, setLines] = useState<Line[]>(BOOT_LINES);
+  const [input, setInput] = useState('');
+  const [history, setHistory] = useState<string[]>([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [lines]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const cmd = input.trim().toLowerCase();
+    if (!cmd) return;
+
+    const inputLine: Line = {
+      type: 'input',
+      content: `jerico@portfolio:~$ ${input}`,
+    };
+
+    if (cmd === 'clear') {
+      setLines([]);
+      setInput('');
+      setHistory(prev => [input, ...prev]);
+      setHistoryIndex(-1);
+      return;
+    }
+
+    const handler = COMMANDS[cmd];
+    const outputLines: Line[] = handler
+      ? handler(cmd.split(' ').slice(1))
+      : [
+          { type: 'error', content: `bash: ${cmd}: command not found` },
+          { type: 'output', content: "Type 'help' for available commands." },
+          { type: 'blank', content: '' },
+        ];
+
+    setLines(prev => [...prev, inputLine, ...outputLines]);
+    setHistory(prev => [input, ...prev]);
+    setHistoryIndex(-1);
+    setInput('');
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      const newIndex = Math.min(historyIndex + 1, history.length - 1);
+      setHistoryIndex(newIndex);
+      setInput(history[newIndex] ?? '');
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const newIndex = Math.max(historyIndex - 1, -1);
+      setHistoryIndex(newIndex);
+      setInput(newIndex === -1 ? '' : history[newIndex]);
+    }
+  };
+
+  return (
+    <div className="terminal-app" onClick={() => inputRef.current?.focus()}>
+      <div className="terminal-output">
+        {lines.map((line, i) => (
+          <div key={i} className={`term-line term-${line.type}`}>
+            {line.type === 'blank' ? '\u00A0' : line.content}
+          </div>
+        ))}
+        <div ref={bottomRef} />
+      </div>
+      <form className="terminal-input-row" onSubmit={handleSubmit}>
+        <span className="terminal-prompt">
+          <span className="prompt-user">jerico@portfolio</span>
+          <span className="prompt-sep">:</span>
+          <span className="prompt-dir">~</span>
+          <span className="prompt-dollar">$</span>
+        </span>
+        <input
+          ref={inputRef}
+          className="terminal-input"
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          autoFocus
+          autoComplete="off"
+          spellCheck={false}
+        />
+      </form>
+    </div>
+  );
+};
+
+export default TerminalApp;
