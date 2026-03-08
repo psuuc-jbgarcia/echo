@@ -123,9 +123,6 @@ const COMMANDS: Record<string, (args: string[]) => Line[]> = {
     { type: 'blank', content: '' },
     { type: 'success', content: '[July 2025 - Present] IT Instructor ● Current' },
     { type: 'output', content: '  Universidad de Dagupan' },
-    { type: 'output', content: '  • Web Development & Database Systems' },
-    { type: 'output', content: '  • Platform Technology (Linux, Apache2, Networking)' },
-    { type: 'output', content: '  • Network Scanning & Cybersecurity basics' },
     { type: 'blank', content: '' },
   ],
 
@@ -175,11 +172,13 @@ const TerminalApp: React.FC = () => {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const outputRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (outputRef.current) {
+      outputRef.current.scrollTop = outputRef.current.scrollHeight;
+    }
   }, [lines]);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -231,13 +230,12 @@ const TerminalApp: React.FC = () => {
 
   return (
     <div className="terminal-app" onClick={() => inputRef.current?.focus()}>
-      <div className="terminal-output">
+      <div className="terminal-output" ref={outputRef}>
         {lines.map((line, i) => (
           <div key={i} className={`term-line term-${line.type}`}>
             {line.type === 'blank' ? '\u00A0' : line.content}
           </div>
         ))}
-        <div ref={bottomRef} />
       </div>
       <form className="terminal-input-row" onSubmit={handleSubmit}>
         <span className="terminal-prompt">
