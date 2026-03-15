@@ -7,17 +7,16 @@
 }
 
 .skills-header {
-  background: rgba(0, 0, 0, 0.3);
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-family: 'Courier New', monospace;
-  font-size: 0.9rem;
-  margin-bottom: 24px;
-  border: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .skills-path {
+  font-family: 'Courier New', monospace;
   color: var(--accent-cyan);
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 .skills-grid {
@@ -61,7 +60,8 @@
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text-color);
+  opacity: 0.5;
   margin-bottom: 12px;
   font-weight: 500;
 }
@@ -137,7 +137,8 @@
 
 .item-sub {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text-color);
+  opacity: 0.5;
 }
 
 .skills-hint {
@@ -156,7 +157,8 @@
 .skills-hint p {
   margin: 0;
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-color);
+  opacity: 0.7;
   font-style: italic;
 }
 
