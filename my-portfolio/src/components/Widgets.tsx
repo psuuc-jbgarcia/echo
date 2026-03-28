@@ -2,13 +2,17 @@ import { useState, useEffect } from 'react';
 import './Widgets.css';
 
 const MOCK_COMMITS = [
-  "feat: add drag and drop support",
-  "fix: context menu positioning",
-  "style: update terminal colors",
-  "refactor: extract desktop icon component",
-  "docs: update README",
-  "chore: bump dependencies",
-  "perf: optimize mesh gradient rendering"
+  "jerico: fixed a bug, created 3 more",
+  "jerico: is that a typo? yes it is",
+  "jerico: taking a lunch break (BRB 🌮)",
+  "jerico: coding with coffee ☕",
+  "jerico: refactoring for the 100th time",
+  "jerico: searching for that missing semicolon",
+  "jerico: googling how to center a div... again",
+  "jerico: deploying to production on a Friday 🚀",
+  "jerico: why is this part working? don't touch it",
+  "jerico: coffee.exe has stopped working",
+  "jerico: trying to explain code to my rubber duck"
 ];
 
 export const LiveGitFeed = () => {
@@ -47,7 +51,11 @@ export const LiveGitFeed = () => {
 const LOG_MESSAGES = [
   "System update complete...",
   "Connection secure (TLS 1.3)",
-  "Dependencies cached.",
+  "Searching for that one missing semicolon...",
+  "Googling how to center a div...",
+  "Thinking about snacks...",
+  "Running on coffee and sheer willpower.",
+  "AI: Jerico is definitely not a robot.",
   "Memory usage normal (45%)",
   "Network scan clear.",
   "Background processes synced.",

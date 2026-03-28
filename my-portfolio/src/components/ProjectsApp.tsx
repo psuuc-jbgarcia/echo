@@ -3,6 +3,10 @@ import './Projects.css';
 
 const projects = [
   {
+    title: 'AI-Powered Essay Evaluation & Scoring System for Teachers',
+    tech: ['React', 'Node.js', 'MongoDB', 'Gemini AI', 'PWA', 'Tailwind CSS', 'Docker']
+  },
+  {
     title: 'Smart Parking Management System with Plate Number Recognition',
     tech: ['Firebase', 'Python', 'YOLO', 'Flask', 'Computer Vision']
   },

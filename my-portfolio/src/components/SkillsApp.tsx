@@ -19,7 +19,7 @@ const SkillsApp: React.FC = () => (
           <div className="card-section">
             <h4 className="section-subtitle">Web & Mobile</h4>
             <div className="skill-tag-container">
-              {['PHP', 'Laravel', 'HTML', 'CSS', 'JavaScript', 'Bootstrap', 'Node.js with Express', 'Dart', 'Flutter', 'Firebase'].map(t => (
+              {['React', 'PHP', 'Laravel', 'HTML', 'CSS', 'JavaScript', 'Tailwind CSS', 'Bootstrap', 'Node.js with Express', 'Dart', 'Flutter', 'Firebase', 'Gemini AI'].map(t => (
                 <span key={t} className="skill-tag tech">{t}</span>
               ))}
             </div>
@@ -28,7 +28,7 @@ const SkillsApp: React.FC = () => (
           <div className="card-section">
             <h4 className="section-subtitle">Database & Programming</h4>
             <div className="skill-tag-container">
-              {['MySQL', 'C++', 'Python Flask', 'Java', 'Java GUI'].map(t => (
+              {['MySQL', 'MongoDB', 'C++', 'Python Flask', 'Java', 'Java GUI'].map(t => (
                 <span key={t} className="skill-tag language">{t}</span>
               ))}
             </div>
@@ -37,7 +37,7 @@ const SkillsApp: React.FC = () => (
           <div className="card-section">
             <h4 className="section-subtitle">Design & Tools</h4>
             <div className="skill-tag-container">
-              {['Figma', 'WordPress', 'Postman'].map(t => (
+              {['Figma', 'WordPress', 'Postman', 'Docker', 'Antigravity', 'Kiro'].map(t => (
                 <span key={t} className="skill-tag tool">{t}</span>
               ))}
             </div>
