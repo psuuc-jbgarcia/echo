@@ -63,3 +63,7 @@
   90% { opacity: 0.8; }
   100% { opacity: 0; }
 }
+
+.widget-visitor-counter {
+  top: 220px; /* Below LiveGitFeed */
+}

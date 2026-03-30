@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import './Widgets.css';
 
+export function resolveCount(raw: string | null): number {
+  const parsed = parseInt(raw ?? '', 10);
+  return isNaN(parsed) ? 1 : parsed;
+}
+
 const MOCK_COMMITS = [
   "jerico: fixed a bug, created 3 more",
   "jerico: is that a typo? yes it is",
@@ -43,6 +48,41 @@ export const LiveGitFeed = () => {
             <span className="commit-msg">{commit}</span>
           </div>
         ))}
+      </div>
+    </div>
+  );
+};
+
+const STORAGE_KEY = 'visitorCount';
+const SESSION_KEY = 'visited';
+
+export const VisitorCounter = () => {
+  const [count, setCount] = useState<number>(0);
+
+  useEffect(() => {
+    try {
+      const alreadyVisited = sessionStorage.getItem(SESSION_KEY);
+      const raw = localStorage.getItem(STORAGE_KEY);
+      const current = resolveCount(raw);
+
+      if (!alreadyVisited) {
+        const next = current + 1;
+        try { localStorage.setItem(STORAGE_KEY, String(next)); } catch {}
+        try { sessionStorage.setItem(SESSION_KEY, '1'); } catch {}
+        setCount(next);
+      } else {
+        setCount(current);
+      }
+    } catch {
+      setCount(1);
+    }
+  }, []);
+
+  return (
+    <div className="widget-visitor-counter widget-git-feed glass">
+      <div className="widget-header">Visitor Count</div>
+      <div className="widget-content">
+        <span className="commit-msg">Total visits: {count}</span>
       </div>
     </div>
   );
