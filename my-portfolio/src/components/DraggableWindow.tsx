@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Rnd } from 'react-rnd';
 import { X, Minus, Square } from 'lucide-react';
 import './Window.css';
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+  return isMobile;
+}
 
 interface WindowProps {
   id: string;
@@ -29,7 +40,32 @@ const DraggableWindow: React.FC<WindowProps> = ({
   closeOnly = false,
   noPadding = false,
 }) => {
+  const isMobile = useIsMobile();
+
   if (!isOpen) return null;
+
+  // On mobile: render a fullscreen overlay panel (no react-rnd)
+  if (isMobile) {
+    return (
+      <div
+        className={`os-window glass mobile-window ${isActive ? 'window-active' : ''}`}
+        onClick={onFocus}
+      >
+        <div className="window-header">
+          <div className="window-controls">
+            <button className="win-btn close-btn" onClick={(e) => { e.stopPropagation(); onClose(); }}>
+              <X size={14} strokeWidth={3} />
+            </button>
+          </div>
+          <div className="window-title">{title}</div>
+          <div className="window-spacer"></div>
+        </div>
+        <div className="window-content" style={noPadding ? { padding: 0, overflow: 'hidden' } : {}}>
+          {children}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Rnd
@@ -39,7 +75,7 @@ const DraggableWindow: React.FC<WindowProps> = ({
       }}
       minWidth={300}
       minHeight={200}
-      bounds="parent" // Keep inside the OS desktop
+      bounds="parent"
       dragHandleClassName="window-header"
       onDragStart={onFocus}
       onResizeStart={onFocus}

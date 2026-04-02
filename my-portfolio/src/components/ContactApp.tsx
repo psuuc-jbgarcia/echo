@@ -7,8 +7,8 @@ const ContactApp: React.FC = () => {
     {
       icon: <Mail size={22} />,
       label: 'Email',
-      value: 'jbgarcia@psuuc.edu.ph',
-      href: 'mailto:jbgarcia@psuuc.edu.ph',
+      value: 'garciajerico217@gmail.com',
+      href: 'mailto:garciajerico217@gmail.com',
       color: '#E040FB',
     },
     {
@@ -21,8 +21,8 @@ const ContactApp: React.FC = () => {
     {
       icon: <Linkedin size={22} />,
       label: 'LinkedIn',
-      value: 'linkedin.com/in/jbgarcia',
-      href: 'https://linkedin.com/in/jbgarcia',
+      value: 'linkedin.com/in/jerico-garcia-810b82354',
+      href: 'https://www.linkedin.com/in/jerico-garcia-810b82354/',
       color: '#2979FF',
     },
   ];

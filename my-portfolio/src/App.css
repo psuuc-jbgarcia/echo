@@ -131,3 +131,19 @@
   100% { transform: translateY(0px); }
 }
 
+@media (max-width: 768px) {
+  .os-cursor-glow {
+    display: none !important;
+  }
+  
+  .os-workspace {
+    top: 36px; /* taller mobile topbar */
+    height: calc(100dvh - 36px - 115px); /* below topbar, above 2-row dock */
+  }
+
+  /* Hide desktop icons on mobile — they'd overlap open windows */
+  .desktop-icon {
+    display: none;
+  }
+}
+

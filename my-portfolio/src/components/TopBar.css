@@ -42,6 +42,21 @@
   background-color: rgba(var(--text-color-rgb), 0.1);
 }
 
+.topbar-logo {
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-cyan);
+  padding-right: 15px !important;
+}
+
+.logo-text {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--accent-cyan);
+}
+
 .topbar-icon {
   padding: 0 8px;
   height: 100%;
@@ -61,4 +76,27 @@
   cursor: default;
   border-radius: 4px;
   transition: background-color 0.2s;
+}
+
+/* Hide secondary topbar items on mobile */
+@media (max-width: 768px) {
+  .os-topbar {
+    height: 36px;
+    padding: 0 12px;
+    font-size: 0.8rem;
+  }
+
+  .topbar-menu-item:not(.font-bold) {
+    display: none;
+  }
+
+  .topbar-icon {
+    padding: 0 6px;
+  }
+
+  .topbar-time {
+    font-size: 0.75rem;
+    padding: 0 6px;
+    white-space: nowrap;
+  }
 }

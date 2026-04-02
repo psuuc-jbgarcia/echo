@@ -67,3 +67,11 @@
 .widget-visitor-counter {
   top: 220px; /* Below LiveGitFeed */
 }
+
+@media (max-width: 768px) {
+  .widget-git-feed,
+  .widget-system-log,
+  .widget-visitor-counter {
+    display: none !important;
+  }
+}

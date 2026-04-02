@@ -92,3 +92,46 @@
   background-color: var(--border-color);
   border-radius: 10px;
 }
+
+/* ── Mobile Fullscreen Window ── */
+.mobile-window {
+  position: fixed !important;
+  top: 28px !important;      /* below top bar */
+  left: 0 !important;
+  width: 100vw !important;
+  height: calc(100dvh - 28px - 115px) !important; /* below topbar, above 2-row dock */
+  border-radius: 0 !important;
+  z-index: 500 !important;
+  display: flex;
+  flex-direction: column;
+  animation: slideUpIn 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+}
+
+@keyframes slideUpIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mobile-window .window-header {
+  border-radius: 0;
+  padding: 0.75rem 1rem;
+  cursor: default;
+}
+
+.mobile-window .window-controls {
+  gap: 10px;
+}
+
+.mobile-window .win-btn {
+  width: 18px;
+  height: 18px;
+}
+
+.mobile-window .window-content {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}

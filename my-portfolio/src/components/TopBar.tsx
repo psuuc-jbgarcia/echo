@@ -31,7 +31,9 @@ const TopBar = () => {
   return (
     <div className="os-topbar glass">
       <div className="topbar-left">
-        <div className="topbar-menu-item font-bold">Jerico OS</div>
+        <div className="topbar-logo topbar-menu-item font-bold">
+          <span className="logo-text">ECHO</span>
+        </div>
         <div className="topbar-menu-item">File</div>
         <div className="topbar-menu-item">Edit</div>
         <div className="topbar-menu-item">View</div>
