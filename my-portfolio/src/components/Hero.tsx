@@ -8,21 +8,21 @@ const Hero: React.FC = () => {
       {/* Background Graphic Elements */}
       <div className="bg-glow glow-cyan"></div>
       <div className="bg-glow glow-blue"></div>
-      
+
       <div className="hero-grid">
         <div className="hero-content">
           <div className="badge glass">
             <span className="badge-dot"></span>
             Hello, I'm Jerico B. Garcia
           </div>
-          
+
           <h1 className="hero-title">
-            Building <span className="text-gradient">Digital</span> <br /> 
+            Building <span className="text-gradient">Digital</span> <br />
             Experiences
           </h1>
-          
+
           <p className="hero-subtitle">
-            Mobile & Web Developer crafting beautiful applications.<br/>
+            Mobile & Web Developer crafting beautiful applications.<br />
             IT Instructor at Universidad de Dagupan.
           </p>
 
@@ -56,14 +56,14 @@ const Hero: React.FC = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="hero-image-container">
           {/* Optional animated ring behind image */}
           <div className="hero-image-ring"></div>
-          <img src="/hero-image.png" alt="Jerico B. Garcia - Developer" className="hero-image" />
+          <img src="/hero-image.jpg" alt="Jerico B. Garcia - Developer" className="hero-image" />
         </div>
       </div>
-      
+
       <div className="scroll-indicator" style={{ left: '50%', transform: 'translateX(-50%)' }}>
         <a href="#skills">
           <ChevronDown size={32} />

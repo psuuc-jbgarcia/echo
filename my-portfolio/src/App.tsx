@@ -210,19 +210,19 @@ function App() {
           defaultSize={{ width: 500, height: 380 }}
           closeOnly={true}
         >
-          <div className="coming-soon-container">
-            <FileText size={48} className="coming-soon-icon" />
-            <h2>Resume.pdf</h2>
-            <p>Jerico B. Garcia — Developer & IT Instructor</p>
+          <div className="coming-soon-container" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: '1rem' }}>
+            <FileText size={64} style={{ color: 'var(--accent-cyan)', opacity: 0.8, marginBottom: '0.5rem' }} />
+            <h2 style={{ fontSize: '1.5rem', fontWeight: 700 }}>Resume Under Development</h2>
+            <p style={{ color: 'var(--text-muted)', maxWidth: '80%' }}>
+              I'm currently updating my latest certifications and achievements. <br/>
+              The full CV will be available for download here soon!
+            </p>
             <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.5rem 1.25rem', borderRadius: '8px', background: 'rgba(var(--accent-cyan-rgb),0.12)', color: 'var(--accent-cyan)', border: '1px solid rgba(var(--accent-cyan-rgb),0.3)', fontWeight: 600, textDecoration: 'none', fontSize: '0.85rem' }}>
-                👁 View Resume
-              </a>
-              <a href="/resume.pdf" download="Jerico_Garcia_Resume.pdf"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.5rem 1.25rem', borderRadius: '8px', background: 'rgba(var(--text-color-rgb),0.07)', color: 'var(--text-color)', border: '1px solid var(--border-color)', fontWeight: 600, textDecoration: 'none', fontSize: '0.85rem' }}>
-                ⬇ Download
-              </a>
+              <button 
+                onClick={() => toggleWindow('contact')}
+                style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.6rem 1.5rem', borderRadius: '8px', background: 'rgba(var(--accent-cyan-rgb),0.12)', color: 'var(--accent-cyan)', border: '1px solid rgba(var(--accent-cyan-rgb),0.3)', fontWeight: 600, fontSize: '0.85rem' }}>
+                📬 Request Copy via Contact
+              </button>
             </div>
           </div>
         </DraggableWindow>
@@ -257,7 +257,10 @@ function App() {
           defaultPosition={{ x: 200, y: 60 }}
           defaultSize={{ width: 680, height: 540 }}
         >
-          <AboutApp />
+          <AboutApp onContactClick={() => {
+            toggleWindow('about'); // Close about
+            toggleWindow('contact'); // Open contact
+          }} />
         </DraggableWindow>
 
         {/* SKILLS */}

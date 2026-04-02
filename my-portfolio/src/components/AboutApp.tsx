@@ -1,8 +1,12 @@
 import React from 'react';
-import { Download, Eye } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import './AboutApp.css';
 
-const AboutApp: React.FC = () => {
+interface AboutAppProps {
+  onContactClick?: () => void;
+}
+
+const AboutApp: React.FC<AboutAppProps> = ({ onContactClick }) => {
   return (
     <div className="about-app">
       <div className="about-header">
@@ -10,15 +14,19 @@ const AboutApp: React.FC = () => {
       </div>
 
       <div className="about-content">
-        <div className="about-section">
-          <pre className="about-ascii">
-            {`██╗███████╗██████╗ ██╗ ██████╗ ██████╗ 
-     ██║██╔════╝██╔══██╗██║██╔════╝██╔═══██╗
-     ██║█████╗  ██████╔╝██║██║     ██║   ██║
-██   ██║██╔══╝  ██╔══██╗██║██║     ██║   ██║
-╚█████╔╝███████╗██║  ██║██║╚██████╗╚██████╔╝
- ╚════╝ ╚══════╝╚═╝  ╚═╝╚═╝ ╚═════╝ ╚═════╝ `}
-          </pre>
+        <div className="about-profile-header">
+          <div className="profile-image-container">
+            <img src="/hero-image.jpg" alt="Jerico B. Garcia" className="about-profile-img" />
+            <div className="profile-online-status"></div>
+          </div>
+          <div className="profile-info-header">
+            <h1 className="profile-name">Jerico B. Garcia</h1>
+            <p className="profile-title">Developer & IT Instructor</p>
+            <div className="profile-badges">
+              <span className="profile-badge">MIT Candidate</span>
+              <span className="profile-badge">Full Stack</span>
+            </div>
+          </div>
         </div>
 
         <div className="about-info-grid">
@@ -67,21 +75,13 @@ const AboutApp: React.FC = () => {
         </div>
 
         <div className="about-resume-actions">
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={onContactClick}
             className="resume-btn view-btn"
+            style={{ borderStyle: 'dotted', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
           >
-            <Eye size={16} /> View Resume
-          </a>
-          <a
-            href="/resume.pdf"
-            download="Jerico_Garcia_Resume.pdf"
-            className="resume-btn download-btn"
-          >
-            <Download size={16} /> Download Resume
-          </a>
+            <Mail size={16} /> Updating Resume... (Click to Request)
+          </button>
         </div>
       </div>
     </div>
