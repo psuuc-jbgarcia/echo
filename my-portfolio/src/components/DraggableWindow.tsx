@@ -50,6 +50,7 @@ const DraggableWindow: React.FC<WindowProps> = ({
       <div
         className={`os-window glass mobile-window ${isActive ? 'window-active' : ''}`}
         onClick={onFocus}
+        style={{ zIndex: isActive ? 600 : 500 }}
       >
         <div className="window-header">
           <div className="window-controls">

@@ -54,11 +54,21 @@ function App() {
   };
 
   const toggleWindow = (id: string) => {
-    setOpenWindows(prev => ({ ...prev, [id]: !prev[id] }));
-    if (!openWindows[id]) {
+    const isOpen = !!openWindows[id];
+    if (!isOpen) {
+      // If closed, open and focus
+      setOpenWindows(prev => ({ ...prev, [id]: true }));
       setActiveWindow(id);
-    } else if (activeWindow === id) {
-      setActiveWindow(null);
+    } else {
+      // If open
+      if (activeWindow !== id) {
+        // If not active, bring to front
+        setActiveWindow(id);
+      } else {
+        // If already active, close it
+        setOpenWindows(prev => ({ ...prev, [id]: false }));
+        setActiveWindow(null);
+      }
     }
   };
 
