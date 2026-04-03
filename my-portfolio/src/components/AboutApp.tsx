@@ -31,10 +31,6 @@ const AboutApp: React.FC<AboutAppProps> = ({ onContactClick }) => {
 
         <div className="about-info-grid">
           <div className="about-info-block">
-            <div className="about-info-label">👤 Name</div>
-            <div className="about-info-value">Jerico B. Garcia</div>
-          </div>
-          <div className="about-info-block">
             <div className="about-info-label">🎓 Education</div>
             <div className="about-info-value">
               MIT — Universidad de Dagupan (Ongoing)<br />
@@ -67,7 +63,7 @@ const AboutApp: React.FC<AboutAppProps> = ({ onContactClick }) => {
         <div className="about-passion">
           <div className="about-spec-label">💡 Bio</div>
           <p className="about-passion-text">
-            Graduated BSIT student (major in Web and Mobile technologies) at Pangasinan State University – Urdaneta City Campus.
+            BSIT Graduate (major in Web and Mobile technologies) from Pangasinan State University – Urdaneta City Campus.
             Currently pursuing Master in Information Technology at Universidad de Dagupan.
             Passionate about building user-friendly applications with experience in web and mobile development, as well as basic to advanced computer troubleshooting.
             Eager to contribute to innovation and gain hands-on experience in a professional environment.

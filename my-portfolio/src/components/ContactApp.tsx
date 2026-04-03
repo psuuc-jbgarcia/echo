@@ -64,7 +64,7 @@ const ContactApp: React.FC = () => {
 
       <div className="contact-footer">
         <span className="contact-status">
-          <span className="status-dot" /> Available for freelance & internship opportunities
+          <span className="status-dot" /> Freelance mobile and web developer available for projects.
         </span>
       </div>
     </div>

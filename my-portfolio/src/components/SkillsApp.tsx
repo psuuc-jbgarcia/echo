@@ -6,7 +6,7 @@ const SkillsApp: React.FC = () => (
     <div className="skills-header">
       <span className="skills-path">$ skills --show-all --verbose</span>
     </div>
-    
+
     <div className="skills-grid">
       {/* Tech Skills Column */}
       <div className="skills-column">
@@ -14,12 +14,12 @@ const SkillsApp: React.FC = () => (
           <span className="title-icon">🚀</span>
           Core Tech Stack
         </h3>
-        
+
         <div className="skill-card tech-stack">
           <div className="card-section">
             <h4 className="section-subtitle">Web & Mobile</h4>
             <div className="skill-tag-container">
-              {['React', 'PHP', 'Laravel', 'HTML', 'CSS', 'JavaScript', 'Tailwind CSS', 'Bootstrap', 'Node.js with Express', 'Dart', 'Flutter', 'Firebase', 'Gemini AI'].map(t => (
+              {['React', 'PHP', 'Laravel', 'HTML', 'CSS', 'JavaScript', 'Tailwind CSS', 'Bootstrap', 'Node.js with Express', 'Dart', 'Flutter',].map(t => (
                 <span key={t} className="skill-tag tech">{t}</span>
               ))}
             </div>
@@ -28,7 +28,7 @@ const SkillsApp: React.FC = () => (
           <div className="card-section">
             <h4 className="section-subtitle">Database & Programming</h4>
             <div className="skill-tag-container">
-              {['MySQL', 'MongoDB', 'C++', 'Python Flask', 'Java', 'Java GUI'].map(t => (
+              {['MySQL', 'MongoDB', 'Firebase', 'C++', 'Python Flask', 'Java', 'Java GUI'].map(t => (
                 <span key={t} className="skill-tag language">{t}</span>
               ))}
             </div>
@@ -51,7 +51,7 @@ const SkillsApp: React.FC = () => (
           <span className="title-icon">🛠</span>
           Technical Expertise
         </h3>
-        
+
         <div className="skill-card technical-expertise">
           <div className="technical-list">
             {[

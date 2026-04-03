@@ -38,6 +38,8 @@
   display: flex;
   flex-direction: column;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+  justify-content: space-between;
 }
 
 .project-card:hover {
@@ -46,11 +48,31 @@
   border-color: rgba(0, 255, 255, 0.3);
 }
 
+.project-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-type-badge {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-cyan);
+  background: rgba(0, 243, 255, 0.05);
+  border: 1px solid rgba(0, 243, 255, 0.15);
+  padding: 2px 8px;
+  border-radius: 4px;
+  width: fit-content;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
 .project-title {
   font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 8px;
-  color: var(--accent-cyan);
+  margin-bottom: 12px;
+  color: var(--text-color);
   line-height: 1.4;
 }
 
@@ -69,6 +91,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  margin-bottom: 20px;
 }
 
 .tech-badge {
@@ -79,4 +102,32 @@
   border-radius: 12px;
   font-size: 0.75rem;
   font-weight: 500;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.github-link:hover {
+  background: rgba(0, 255, 255, 0.1);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
 }
