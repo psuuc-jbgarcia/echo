@@ -22,7 +22,7 @@ const projects = [
   {
     title: 'Smart Parking Management System with Plate Number Recognition',
     type: 'Mobile & Web App',
-    tech: ['Firebase', 'Python', 'YOLO', 'Flask', 'Computer Vision'],
+    tech: ['Firebase', 'Python', 'YOLO', 'Flask', 'Computer Vision', 'Flutter'],
     links: [
       { label: 'User Side', url: 'https://github.com/psuuc-jbgarcia/parkwatch_app' },
       { label: 'Admin Side', url: 'https://github.com/psuuc-jbgarcia/parkwatch' }
@@ -78,7 +78,7 @@ const ProjectsApp: React.FC = () => (
           <div className="project-content">
             <div className="project-type-badge">{project.type}</div>
             <h3 className="project-title">{project.title}</h3>
-            
+
             <div className="project-tech-title">Technologies Used:</div>
             <div className="project-tech-list">
               {project.tech.map((tech, i) => (
@@ -86,13 +86,13 @@ const ProjectsApp: React.FC = () => (
               ))}
             </div>
           </div>
-          
+
           {project.links && project.links.length > 0 && (
             <div className="project-links">
               {project.links.map((link, i) => (
                 <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="github-link">
-                  <svg 
-                    width="14" height="14" viewBox="0 0 24 24" fill="none" 
+                  <svg
+                    width="14" height="14" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                     style={{ marginRight: '6px' }}
                   >
