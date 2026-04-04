@@ -12,6 +12,13 @@ const projects = [
     ]
   },
   {
+    title: 'jobprep',
+    type: 'Ongoing Project',
+    tech: [],
+    description: 'An AI-powered job application tool for mock interviews to help you prepare for real interviews.',
+    links: []
+  },
+  {
     title: 'AI-Powered Essay Evaluation & Scoring System for Teachers',
     type: 'Web Application',
     tech: ['React', 'Node.js', 'MongoDB', 'Gemini AI', 'PWA', 'Tailwind CSS', 'Docker'],
@@ -63,7 +70,8 @@ const projects = [
     type: 'Mobile Application',
     tech: ['Flutter', 'Firebase'],
     links: []
-  }
+  },
+
 ];
 
 const ProjectsApp: React.FC = () => (
@@ -78,13 +86,20 @@ const ProjectsApp: React.FC = () => (
           <div className="project-content">
             <div className="project-type-badge">{project.type}</div>
             <h3 className="project-title">{project.title}</h3>
+            {project.description && (
+              <p className="project-description">{project.description}</p>
+            )}
 
-            <div className="project-tech-title">Technologies Used:</div>
-            <div className="project-tech-list">
-              {project.tech.map((tech, i) => (
-                <span key={i} className="tech-badge">{tech}</span>
-              ))}
-            </div>
+            {project.tech && project.tech.length > 0 && (
+              <>
+                <div className="project-tech-title">Technologies Used:</div>
+                <div className="project-tech-list">
+                  {project.tech.map((tech, i) => (
+                    <span key={i} className="tech-badge">{tech}</span>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
 
           {project.links && project.links.length > 0 && (

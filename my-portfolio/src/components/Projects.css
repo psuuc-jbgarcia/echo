@@ -76,6 +76,14 @@
   line-height: 1.4;
 }
 
+.project-description {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
 .project-tech-title {
   font-size: 0.8rem;
   text-transform: uppercase;
