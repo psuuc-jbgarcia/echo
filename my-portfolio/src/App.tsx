@@ -9,7 +9,7 @@ import TopBar from './components/TopBar';
 import MatrixRain from './components/MatrixRain';
 import DesktopIcon from './components/DesktopIcon';
 import ContextMenu from './components/ContextMenu';
-import { LiveGitFeed, SystemLogs, VisitorCounter } from './components/Widgets';
+import { LiveGitFeed, SystemLogs } from './components/Widgets';
 import ProjectsApp from './components/ProjectsApp';
 import TerminalApp from './components/TerminalApp';
 import AboutApp from './components/AboutApp';
@@ -120,7 +120,6 @@ function App() {
 
       {/* Widgets */}
       <LiveGitFeed />
-      <VisitorCounter />
       <SystemLogs />
 
       {/* Context Menu */}
