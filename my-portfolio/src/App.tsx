@@ -6,13 +6,14 @@ import ExperienceApp from './components/ExperienceApp';
 import CertificationsApp from './components/CertificationsApp';
 import ContactApp from './components/ContactApp';
 import TopBar from './components/TopBar';
-import MatrixRain from './components/MatrixRain';
+
 import DesktopIcon from './components/DesktopIcon';
 import ContextMenu from './components/ContextMenu';
 import { LiveGitFeed, SystemLogs } from './components/Widgets';
 import ProjectsApp from './components/ProjectsApp';
 import TerminalApp from './components/TerminalApp';
 import AboutApp from './components/AboutApp';
+import AssistantApp from './components/AssistantApp';
 import { FileText, Trash2 } from 'lucide-react';
 import './App.css';
 
@@ -95,13 +96,6 @@ function App() {
 
   return (
     <div className="os-desktop" onContextMenu={handleContextMenu} onClick={handleDesktopClick}>
-      <div className="os-bg-mesh"></div>
-      <div className="os-bg-glow glow-cyan"></div>
-      <div className="os-bg-glow glow-blue"></div>
-      <div className="os-cursor-glow"></div>
-
-      <MatrixRain isDarkMode={isDarkMode} />
-
       {/* Desktop Icons */}
       <DesktopIcon
         icon={<FileText size={32} />}
@@ -316,6 +310,20 @@ function App() {
           defaultSize={{ width: 600, height: 440 }}
         >
           <ContactApp />
+        </DraggableWindow>
+
+        {/* E.C.H.O ASSISTANT */}
+        <DraggableWindow
+          id="assistant"
+          title="🤖 E.C.H.O Protocol"
+          isOpen={!!openWindows['assistant']}
+          isActive={activeWindow === 'assistant'}
+          onClose={() => toggleWindow('assistant')}
+          onFocus={() => focusWindow('assistant')}
+          defaultPosition={{ x: Math.max((window.innerWidth - 620) / 2, 20), y: Math.max((window.innerHeight - 550) / 2, 40) }}
+          defaultSize={{ width: 620, height: 550 }}
+        >
+          <AssistantApp />
         </DraggableWindow>
       </div>
 

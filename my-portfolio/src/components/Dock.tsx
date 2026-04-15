@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Lightbulb, FolderKanban, Award, Mail, User, FolderOpen, Github } from 'lucide-react';
+import { Terminal, Lightbulb, FolderKanban, Award, Mail, User, FolderOpen, Github, Bot } from 'lucide-react';
 import './Dock.css';
 
 interface DockProps {
@@ -12,6 +12,7 @@ interface DockProps {
 
 const apps = [
   { id: 'terminal',        name: 'Terminal',   icon: Terminal,     color: '#1a1a1a' },
+  { id: 'assistant',       name: 'E.C.H.O AI', icon: Bot,          color: '#10b981' },
   { id: 'about',           name: 'About Me',   icon: User,         color: '#8B5CF6' },
   { id: 'projects_folder', name: 'Projects',   icon: FolderOpen,   color: '#F59E0B' },
   { id: 'skills',          name: 'Skills',     icon: Lightbulb,    color: '#f5a623' },
