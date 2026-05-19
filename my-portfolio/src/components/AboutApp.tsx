@@ -21,10 +21,13 @@ const AboutApp: React.FC<AboutAppProps> = ({ onContactClick }) => {
           </div>
           <div className="profile-info-header">
             <h1 className="profile-name">Jerico B. Garcia</h1>
-            <p className="profile-title">Developer & IT Instructor</p>
+            <p className="profile-title">Software Engineer · Web &amp; Mobile</p>
+            <p className="profile-title" style={{ fontSize: '0.85rem', opacity: 0.75, marginTop: '0.15rem' }}>IT Instructor · Universidad de Dagupan</p>
             <div className="profile-badges">
               <span className="profile-badge">MIT Candidate</span>
-              <span className="profile-badge">Full Stack</span>
+              <span className="profile-badge">Web</span>
+              <span className="profile-badge">Mobile</span>
+              <span className="profile-badge">IT Instructor</span>
             </div>
           </div>
         </div>
@@ -39,7 +42,7 @@ const AboutApp: React.FC<AboutAppProps> = ({ onContactClick }) => {
           </div>
           <div className="about-info-block">
             <div className="about-info-label">💼 Role</div>
-            <div className="about-info-value">Developer & IT Instructor</div>
+            <div className="about-info-value">Software Engineer · Web &amp; Mobile<br />IT Instructor at Universidad de Dagupan</div>
           </div>
           <div className="about-info-block">
             <div className="about-info-label">📍 Location</div>

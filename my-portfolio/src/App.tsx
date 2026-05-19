@@ -148,7 +148,7 @@ function App() {
 
             <p><span style={{ color: 'var(--accent-cyan)' }}>jerico@portfolio</span>:<span style={{ color: 'var(--accent-blue)' }}>~</span>$ cat intro.txt</p>
             <p style={{ marginTop: '0.5rem', marginBottom: '1rem' }}>
-              Hello! I'm a Mobile &amp; Web Developer crafting beautiful applications. <br />
+              Hello! I'm a Software Engineer specializing in Web &amp; Mobile development. <br />
               I also work as an IT Instructor at Universidad de Dagupan.<br />
               <br />
               I built this portfolio as an interactive desktop environment. <br />

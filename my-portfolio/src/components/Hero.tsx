@@ -22,8 +22,8 @@ const Hero: React.FC = () => {
           </h1>
 
           <p className="hero-subtitle">
-            Mobile & Web Developer crafting beautiful applications.<br />
-            IT Instructor at Universidad de Dagupan.
+            Software Engineer · Web &amp; Mobile<br />
+            IT Instructor at Universidad de Dagupan
           </p>
 
           <div className="hero-cta">
