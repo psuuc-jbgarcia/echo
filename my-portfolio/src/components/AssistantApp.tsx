@@ -27,15 +27,15 @@ const AssistantApp: React.FC = () => {
 
     if (messages.length === 0) {
       setMessages([{ id: 'boot1', sender: 'ai', text: 'E.C.H.O Protocol Initializing...', isBootSeq: true }]);
-      
+
       timeout1 = setTimeout(() => {
         setMessages(prev => [...prev, { id: 'boot2', sender: 'ai', text: 'System Online. Security clearance accepted.', isBootSeq: true }]);
-        
+
         timeout2 = setTimeout(() => {
-          setMessages(prev => [...prev, { 
-            id: 'boot3', 
-            sender: 'ai', 
-            text: 'Greetings. I am E.C.H.O, the digital assistant for this operating system. How can I assist you with information regarding Jerico B. Garcia?' 
+          setMessages(prev => [...prev, {
+            id: 'boot3',
+            sender: 'ai',
+            text: 'Greetings. I am E.C.H.O, the digital assistant for this operating system. How can I assist you with information regarding Jerico B. Garcia?'
           }]);
         }, 800);
       }, 1000);
@@ -49,7 +49,7 @@ const AssistantApp: React.FC = () => {
 
   const generateResponse = async (text: string) => {
     const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    
+
     if (!apiKey) {
       return "ERROR: Gemini API Key not found. Please add VITE_GEMINI_API_KEY to your .env file.";
     }
@@ -74,7 +74,7 @@ const AssistantApp: React.FC = () => {
 
       const data = await response.json();
       if (data.error) throw new Error(data.error.message);
-      
+
       return data.candidates[0].content.parts[0].text;
     } catch (err: any) {
       console.error(err);
@@ -101,7 +101,7 @@ const AssistantApp: React.FC = () => {
     const userMsg: Message = { id: Date.now().toString(), sender: 'user', text: cmd };
     setMessages(prev => [...prev, userMsg]);
     setIsTyping(true);
-    
+
     const aiResponseText = await generateResponse(cmd);
     setMessages(prev => [...prev, { id: (Date.now() + 1).toString(), sender: 'ai', text: aiResponseText }]);
     setIsTyping(false);
@@ -127,7 +127,7 @@ const AssistantApp: React.FC = () => {
             </div>
           </div>
         ))}
-        
+
         {isTyping && (
           <div className="message-wrapper ai typing">
             <div className="message-bubble">
@@ -142,14 +142,14 @@ const AssistantApp: React.FC = () => {
       </div>
 
       <div className="assistant-quick-actions">
-        <button onClick={() => handleQuickCommand('Who is Jerico?')}><Command size={12}/> Who is Jerico?</button>
-        <button onClick={() => handleQuickCommand('Tech Skills')}><Command size={12}/> Tech Skills</button>
-        <button onClick={() => handleQuickCommand('Contact Details')}><Command size={12}/> Contact Info</button>
+        <button onClick={() => handleQuickCommand('Who is Jerico?')}><Command size={12} /> Who is Jerico?</button>
+        <button onClick={() => handleQuickCommand('Tech Skills')}><Command size={12} /> Tech Skills</button>
+        <button onClick={() => handleQuickCommand('Contact Details')}><Command size={12} /> Contact Info</button>
       </div>
 
       <form className="assistant-input-area" onSubmit={handleSend}>
-        <input 
-          type="text" 
+        <input
+          type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Query E.C.H.O network..."
@@ -164,3 +164,4 @@ const AssistantApp: React.FC = () => {
 };
 
 export default AssistantApp;
+
